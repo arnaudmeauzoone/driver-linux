@@ -31,6 +31,13 @@ static void __exit hello_cleanup(void)
   printk(KERN_INFO "Good bye, interrupt.\n");
 }
 
+//These are some useful information that could reveald with modinfo command
+//Set module license to get rid of tainted kernel warnings
+MODULE_LICENSE("GPL");
+//Introduce the module's developer and it's functionality
+MODULE_AUTHOR("Arnaud Meauzoone");
+MODULE_DESCRIPTION("This is just a simple driver that handle interrupt");
+
 module_init(hello_init);
 module_exit(hello_cleanup);
 
